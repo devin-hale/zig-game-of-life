@@ -58,6 +58,18 @@ const Grid = struct {
         @memcpy(&self.arr, &copy);
     }
 
+    pub fn draw(grid: *Grid) void {
+        for (grid.arr, 0..) |row, y| {
+            for (row, 0..) |sq, x| {
+                if (sq == true) {
+                    const offset_x: i32 = @intCast(x * pixel_w);
+                    const offset_y: i32 = @intCast(y * pixel_h);
+                    rl.drawRectangle(offset_x, offset_y, pixel_w, pixel_h, .white);
+                }
+            }
+        }
+    }
+
     fn get(self: *Grid, x: usize, y: usize) ?bool {
         if (x >= self.width or y >= self.height) return null;
         return self.arr[y][x];
@@ -107,19 +119,7 @@ pub fn main() anyerror!void {
         rl.beginDrawing();
         defer rl.endDrawing();
         grid.progress();
-        draw(&grid);
+        grid.draw();
         rl.clearBackground(.black);
-    }
-}
-
-fn draw(grid: *Grid) void {
-    for (grid.arr, 0..) |row, y| {
-        for (row, 0..) |sq, x| {
-            if (sq == true) {
-                const offset_x: i32 = @intCast(x * pixel_w);
-                const offset_y: i32 = @intCast(y * pixel_h);
-                rl.drawRectangle(offset_x, offset_y, pixel_w, pixel_h, .white);
-            }
-        }
     }
 }
