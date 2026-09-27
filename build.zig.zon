@@ -1,5 +1,5 @@
 .{
-    .name = .ziglife,
+    .name = .zig_game_of_life,
     .version = "0.0.1",
     .dependencies = .{
         .raylib_zig = .{
