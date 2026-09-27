@@ -13,5 +13,5 @@
         "build.zig.zon",
         "src",
     },
-    .fingerprint = 0xe91444363804bec4,
+    .fingerprint = 0x662ad8cc906dfe34,
 }
